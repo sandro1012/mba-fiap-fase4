@@ -1,46 +1,62 @@
-﻿kind: Deployment
+kind: Deployment
 apiVersion: apps/v1
 metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: '*'
-    deployment.kubernetes.io/revision: '3'
+    app.openshift.io/vcs-ref: ''
+    app.openshift.io/vcs-uri: 'https://github.com/openshift-katacoda/blog-django-py.git'
+    deployment.kubernetes.io/revision: '4'
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"blog:2.0","namespace":"blog-rm-343499"},"fieldPath":"spec.template.spec.containers[?(@.name==\"blog\")].image","pause":"false"}]
+      [{"from":{"kind":"ImageStreamTag","name":"blog-django-py-git:latest","namespace":"rm-343499"},"fieldPath":"spec.template.spec.containers[?(@.name==\"blog-django-py-git\")].image","pause":"false"}]
     openshift.io/generated-by: OpenShiftWebConsole
-  selfLink: /apis/apps/v1/namespaces/blog-rm-343499/deployments/blog
-  resourceVersion: '96902384'
+  selfLink: /apis/apps/v1/namespaces/rm-343499/deployments/blog-django-py-git
+  resourceVersion: '96942399'
   name: blog-django-py-git
-  uid: a50fefeb-4d8e-406f-9734-7e1b619d8ebc
-  creationTimestamp: '2022-07-13T18:33:19Z'
+  uid: 96b7dac0-cdd4-48cb-a3a2-e3b854c0cd35
+  creationTimestamp: '2022-07-11T17:19:33Z'
   generation: 8
   managedFields:
-    - manager: oc
+    - manager: openshift-controller-manager
       operation: Update
       apiVersion: apps/v1
-      time: '2022-07-13T18:37:21Z'
+      time: '2022-07-11T17:21:05Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:spec':
           'f:template':
             'f:spec':
               'f:containers':
-                'k:{"name":"blog"}':
+                'k:{"name":"blog-django-py-git"}':
+                  'f:image': {}
+    - manager: kubectl-set
+      operation: Update
+      apiVersion: apps/v1
+      time: '2022-07-13T19:10:32Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:template':
+            'f:spec':
+              'f:containers':
+                'k:{"name":"blog-django-py-git"}':
                   'f:env':
                     .: {}
-                    'k:{"name":"DATABASE_URL"}':
+                    'k:{"name":"BLOG_SITE_NAME"}':
                       .: {}
                       'f:name': {}
                       'f:value': {}
     - manager: Mozilla
       operation: Update
       apiVersion: apps/v1
-      time: '2022-07-13T19:13:35Z'
+      time: '2022-07-13T20:14:41Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
           'f:annotations':
             .: {}
             'f:alpha.image.policy.openshift.io/resolve-names': {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
             'f:image.openshift.io/triggers': {}
             'f:openshift.io/generated-by': {}
           'f:labels':
@@ -48,8 +64,10 @@ metadata:
             'f:app': {}
             'f:app.kubernetes.io/component': {}
             'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
             'f:app.kubernetes.io/part-of': {}
-            'f:app.openshift.io/runtime-namespace': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
         'f:spec':
           'f:progressDeadlineSeconds': {}
           'f:replicas': {}
@@ -66,34 +84,30 @@ metadata:
             'f:type': {}
           'f:template':
             'f:metadata':
-              'f:annotations':
-                .: {}
-                'f:openshift.io/generated-by': {}
               'f:labels':
                 .: {}
                 'f:app': {}
                 'f:deploymentconfig': {}
             'f:spec':
               'f:containers':
-                'k:{"name":"blog"}':
-                  'f:image': {}
-                  'f:terminationMessagePolicy': {}
+                'k:{"name":"blog-django-py-git"}':
                   .: {}
-                  'f:resources': {}
                   'f:env':
-                    'k:{"name":"BLOG_SITE_NAME"}':
+                    'k:{"name":"BLOG_BANNER_COLOR"}':
                       .: {}
                       'f:name': {}
                       'f:value': {}
-                  'f:terminationMessagePath': {}
                   'f:imagePullPolicy': {}
+                  'f:name': {}
                   'f:ports':
                     .: {}
                     'k:{"containerPort":8080,"protocol":"TCP"}':
                       .: {}
                       'f:containerPort': {}
                       'f:protocol': {}
-                  'f:name': {}
+                  'f:resources': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
               'f:dnsPolicy': {}
               'f:restartPolicy': {}
               'f:schedulerName': {}
@@ -102,7 +116,7 @@ metadata:
     - manager: kube-controller-manager
       operation: Update
       apiVersion: apps/v1
-      time: '2022-07-13T19:13:39Z'
+      time: '2022-07-13T20:14:52Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -132,43 +146,43 @@ metadata:
           'f:readyReplicas': {}
           'f:replicas': {}
           'f:updatedReplicas': {}
-  namespace: blog-rm-343499
+  namespace: rm-343499
   labels:
-    app: blog
+    app: blog-django-py-git
     app.kubernetes.io/component: blog-django-py-git
     app.kubernetes.io/instance: blog-django-py-git
-    app.kubernetes.io/part-of: myblog
-    app.openshift.io/runtime-namespace: blog-rm-343499
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: blog-django-py-git-app
+    app.openshift.io/runtime: python
+    app.openshift.io/runtime-version: 3.8-ubi7
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: blog
+      app: blog-django-py-git
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: blog
-        deploymentconfig: blog
-      annotations:
-        openshift.io/generated-by: OpenShiftWebConsole
+        app: blog-django-py-git
+        deploymentconfig: blog-django-py-git
     spec:
       containers:
-        - name: blog
+        - name: blog-django-py-git
           image: >-
-            image-registry.openshift-image-registry.svc:5000/blog-rm-343499/blog-django-py-git@sha256:5bc9f4c05ac3a11d79024a6eec5df8ec912908d547dbf8167302c1fada7e949c
+            image-registry.openshift-image-registry.svc:5000/rm-343499/blog-django-py-git@sha256:b0994e6f5670bc85aa47d7214e6020d0ea162eed247a4bbaaf1591aa3985eb6c
           ports:
             - containerPort: 8080
               protocol: TCP
           env:
-            - name: DATABASE_URL
-              value: 'postgresql://sampledb:sampledb@sample-database:5432/sampledb'
             - name: BLOG_SITE_NAME
-              value: RM-343499
+              value: '''RM-343499'''
+            - name: BLOG_BANNER_COLOR
+              value: black
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
@@ -183,20 +197,20 @@ spec:
   progressDeadlineSeconds: 600
 status:
   observedGeneration: 8
-  replicas: 2
-  updatedReplicas: 2
-  readyReplicas: 2
-  availableReplicas: 2
+  replicas: 3
+  updatedReplicas: 3
+  readyReplicas: 3
+  availableReplicas: 3
   conditions:
     - type: Available
       status: 'True'
-      lastUpdateTime: '2022-07-13T18:37:37Z'
-      lastTransitionTime: '2022-07-13T18:37:37Z'
+      lastUpdateTime: '2022-07-13T18:08:33Z'
+      lastTransitionTime: '2022-07-13T18:08:33Z'
       reason: MinimumReplicasAvailable
       message: Deployment has minimum availability.
     - type: Progressing
       status: 'True'
-      lastUpdateTime: '2022-07-13T19:13:39Z''
-      lastTransitionTime: '2022-07-13T18:33:20Z'
+      lastUpdateTime: '2022-07-13T20:14:52Z'
+      lastTransitionTime: '2022-07-11T17:19:33Z'
       reason: NewReplicaSetAvailable
-      message: eplicaSet "blog-django-py-git-b7594dfcc" has successfully progressed
+      message: ReplicaSet "blog-django-py-git-55bdb676f9" has successfully progressed.
