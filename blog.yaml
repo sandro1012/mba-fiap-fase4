@@ -10,11 +10,11 @@ metadata:
       [{"from":{"kind":"ImageStreamTag","name":"blog-django-py-git:latest","namespace":"rm-343499"},"fieldPath":"spec.template.spec.containers[?(@.name==\"blog-django-py-git\")].image","pause":"false"}]
     openshift.io/generated-by: OpenShiftWebConsole
   selfLink: /apis/apps/v1/namespaces/rm-343499/deployments/blog-django-py-git
-  resourceVersion: '96950421'
+  resourceVersion: '97643178'
   name: blog-django-py-git
   uid: 96b7dac0-cdd4-48cb-a3a2-e3b854c0cd35
   creationTimestamp: '2022-07-11T17:19:33Z'
-  generation: 9
+  generation: 23
   managedFields:
     - manager: openshift-controller-manager
       operation: Update
@@ -120,7 +120,7 @@ metadata:
     - manager: kube-controller-manager
       operation: Update
       apiVersion: apps/v1
-      time: '2022-07-13T20:22:16Z'
+      time: '2022-07-14T13:28:41Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -202,21 +202,21 @@ spec:
   revisionHistoryLimit: 10
   progressDeadlineSeconds: 600
 status:
-  observedGeneration: 9
+  observedGeneration: 23
   replicas: 3
   updatedReplicas: 3
   readyReplicas: 3
   availableReplicas: 3
   conditions:
-    - type: Available
-      status: 'True'
-      lastUpdateTime: '2022-07-13T18:08:33Z'
-      lastTransitionTime: '2022-07-13T18:08:33Z'
-      reason: MinimumReplicasAvailable
-      message: Deployment has minimum availability.
     - type: Progressing
       status: 'True'
       lastUpdateTime: '2022-07-13T20:22:16Z'
       lastTransitionTime: '2022-07-11T17:19:33Z'
       reason: NewReplicaSetAvailable
       message: ReplicaSet "blog-django-py-git-8975b8f94" has successfully progressed.
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2022-07-14T13:28:41Z'
+      lastTransitionTime: '2022-07-14T13:28:41Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
