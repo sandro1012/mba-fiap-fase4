@@ -3,6 +3,7 @@
 Imagem customizada: 
 
 Fork do projeto com mudança no dockerfile, foi alterada a versão do python: 
+https://github.com/sandro1012/blog-django-py
 
 Prints
 
