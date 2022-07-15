@@ -1,4 +1,4 @@
-﻿kind: DeploymentConfig
+kind: DeploymentConfig
 apiVersion: apps.openshift.io/v1
 metadata:
   annotations:
@@ -6,16 +6,16 @@ metadata:
     template.alpha.openshift.io/wait-for-ready: 'true'
   selfLink: >-
     /apis/apps.openshift.io/v1/namespaces/rm-343499/deploymentconfigs/sample-database
-  resourceVersion: '96895751'
+  resourceVersion: '97630817'
   name: sample-database
-  uid: bb44cff7-e692-4338-85e1-093dc30baf57
-  creationTimestamp: '2022-07-13T19:04:36Z'
+  uid: e8c2b1ef-8cb9-4705-b003-53e9a75864f2
+  creationTimestamp: '2022-07-14T13:15:42Z'
   generation: 2
   managedFields:
     - manager: oc
       operation: Update
       apiVersion: apps.openshift.io/v1
-      time: '2022-07-13T19:04:36Z'
+      time: '2022-07-14T13:15:42Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -147,7 +147,7 @@ metadata:
     - manager: openshift-controller-manager
       operation: Update
       apiVersion: apps.openshift.io/v1
-      time: '2022-07-13T19:05:13Z'
+      time: '2022-07-14T13:16:07Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:spec':
@@ -301,13 +301,13 @@ status:
   conditions:
     - type: Available
       status: 'True'
-      lastUpdateTime: '2022-07-13T19:05:13Z'
-      lastTransitionTime: '2022-07-13T19:05:13Z'
+      lastUpdateTime: '2022-07-14T13:16:07Z'
+      lastTransitionTime: '2022-07-14T13:16:07Z'
       message: Deployment config has minimum availability.
     - type: Progressing
       status: 'True'
-      lastUpdateTime: '2022-07-13T19:05:13Z'
-      lastTransitionTime: '2022-07-13T19:05:13Z'
+      lastUpdateTime: '2022-07-14T13:16:07Z'
+      lastTransitionTime: '2022-07-14T13:15:45Z'
       reason: NewReplicationControllerAvailable
       message: replication controller "sample-database-1" successfully rolled out
   replicas: 1
